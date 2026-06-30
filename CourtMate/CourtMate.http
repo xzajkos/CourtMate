@@ -1,1 +1,56 @@
 @CourtMate_HostAddress = http://localhost:5044
+
+### Lista użytkowników
+GET {{CourtMate_HostAddress}}/api/users
+
+### Lista lig
+GET {{CourtMate_HostAddress}}/api/leagues
+
+### Tabela ligowa (użyj ID ligi z powyższego zapytania)
+GET {{CourtMate_HostAddress}}/api/leagues/{{leagueId}}/standings
+
+### Mecze w lidze
+GET {{CourtMate_HostAddress}}/api/leagues/{{leagueId}}/matches
+
+### Nowy użytkownik
+POST {{CourtMate_HostAddress}}/api/users
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "firstName": "Test",
+  "lastName": "User",
+  "password": "secret"
+}
+
+### Nowa liga
+POST {{CourtMate_HostAddress}}/api/leagues
+Content-Type: application/json
+
+{
+  "leagueName": "Liga Letnia 2026",
+  "playerIds": []
+}
+
+### Zaplanuj mecz
+POST {{CourtMate_HostAddress}}/api/leagues/{{leagueId}}/matches
+Content-Type: application/json
+
+{
+  "player1Id": "00000000-0000-0000-0000-000000000001",
+  "player2Id": "00000000-0000-0000-0000-000000000002",
+  "date": "2026-07-01T18:00:00Z"
+}
+
+### Wpisz wynik meczu
+PUT {{CourtMate_HostAddress}}/api/leagues/{{leagueId}}/matches/{{matchId}}/score
+Content-Type: application/json
+
+{
+  "status": "Completed",
+  "sets": [
+    { "player1Games": 6, "player2Games": 4 },
+    { "player1Games": 6, "player2Games": 2 }
+  ],
+  "winnerId": null
+}

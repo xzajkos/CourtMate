@@ -7,6 +7,7 @@ public class LeagueTable
         Id = Guid.NewGuid();
         LeagueName = leagueName;
         Players = players;
+        Matches = [];
     }
     public Guid Id { get; set; }
     public string LeagueName { get; set; }
